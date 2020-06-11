@@ -604,11 +604,11 @@ In this task, you will use the Azure management portal to validate each of the p
 
     ![Azure portal screenshot, showing selection sequence to create an IoT Hub resource](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image19.png "Create IoT hub Azure portal selection path")
 
-2. Specify a unique name for the IoT Hub and choose the existing **ExpressRouteRG** resource group. Choose a permitted location (we are only testing the Service Catalog policy at this time).
+2. Specify a unique name for the IoT Hub by using the **Deployment ID** (provided to you in the lab credentials) as a prefix or suffix (see below screenshot for reference) and choose the existing **ExpressRouteRG** resource group. Choose a permitted location (we are only testing the Service Catalog policy at this time).
 
     Once all the settings have been filled in, select **Review + create** followed by **Create**.
 
-    ![Azure portal screenshot showing the review and create experience for an IoT Hub.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image95.png "Azure IoT Hub Create")
+    ![Azure portal screenshot showing the review and create experience for an IoT Hub.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image95(1).png "Azure IoT Hub Create")
 
 3. The IoT Hub creation blade should show an error. If you select the error message you will see in the activity log that there were policy errors. 
 
