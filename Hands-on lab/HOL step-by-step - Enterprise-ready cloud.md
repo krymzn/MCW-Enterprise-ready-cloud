@@ -604,7 +604,7 @@ In this task, you will use the Azure management portal to validate each of the p
 
     ![Azure portal screenshot, showing selection sequence to create an IoT Hub resource](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image19.png "Create IoT hub Azure portal selection path")
 
-2. Specify a unique name for the IoT Hub and choose the existing **ExpressRouteRG** resource group. Choose a permitted location (we are only testing the Service Catalog policy at this time).
+2. Specify a unique name for the IoT Hub by using the **Deployment ID** (provided to you in the lab credentials) as a prefix or suffix (see below screenshot for reference) and choose the existing **ExpressRouteRG** resource group. Choose a permitted location (we are only testing the Service Catalog policy at this time).
 
     Once all the settings have been filled in, select **Review + create** followed by **Create**.
 
@@ -688,7 +688,7 @@ In this exercise, you will configure delegated permissions for users in the Trey
 
 In this task, you will create two groups in Azure AD that you will use for testing delegated access control. In the next task, users will be created that will be added to these new security groups.
 
-1. Launch the Azure Cloud Shell and select **PowerShell** if prompted. If prompted to create storage, select the **Create storage** button.
+1. Launch the Azure Cloud Shell and select **PowerShell** if prompted. If prompted to create storage, select the **Create storage** button and make sure to use an allowed region according to the policy you defined earlier.
 
     ![Azure portal screenshot showing the button to launch the Azure Cloud Shell.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image93.png "Azure Cloud Shell launch button")
 
@@ -720,7 +720,7 @@ In this task, you will create two user accounts in Azure AD that you will use fo
 
     ```s
     az ad user create --display-name "Electronics Admin" --password "demo@pass123" --user-principal-name "ElectronicsAdmin@$aadDomain"
-    $memberId = (az ad user show --upn-or-object-id "ElectronicsAdmin@$aadDomain" --query objectId -o tsv)
+    $memberId = (az ad user show --id "ElectronicsAdmin@$aadDomain" --query objectId -o tsv)
     az ad group member add --group "BU-Electronics-Admins" --member-id $memberId
     ```
 
@@ -728,7 +728,7 @@ In this task, you will create two user accounts in Azure AD that you will use fo
 
     ```s
     az ad user create --display-name "Electronics User" --password "demo@pass123" --user-principal-name "ElectronicsUser@$aadDomain"
-    $memberId = (az ad user show --upn-or-object-id "ElectronicsUser@$aadDomain" --query objectId -o tsv)
+    $memberId = (az ad user show --id "ElectronicsUser@$aadDomain" --query objectId -o tsv)
     az ad group member add --group "BU-Electronics-Users" --member-id $memberId
     ```
 
@@ -908,7 +908,7 @@ In this task, you will create a script that will create a new resource group, as
     . $HOME\CreateProjectResourceGroup.ps1 -SubscriptionId $SubscriptionId -ResourceGroupName $resourceGroupName -Location $location -IOCode "1000150" -CostCenter "Marketing" -AdGroupName "BU-Electronics-Admins"
     ```
 
-9. Create a new storage account in the resource group (choose a unique name) to validate the ioCode tag was applied (replace *uniquestorageaccount* with a unique value).
+9. Create a new storage account in the resource group to validate the ioCode tag was applied (replace *uniquestorageaccount* with a unique value using you **Deployment ID** as a suffix or prefix).
 
     ```powershell
     New-AzStorageAccount -ResourceGroupName $resourceGroupName `
@@ -1649,11 +1649,11 @@ In this task you will create a management group and assign a policy that contain
 
     ![Azure portal screenshot, showing the Add management group button that is used to launch the Add management group blade.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image91.png "Add management group button")
 
-3. In the **Add management group** blade, enter **CostManagementandCompliance** as the management group ID and **CMC** as the display name. Select **Save**.
+3. In the **Add management group** blade, enter **CMC** as the management group ID and **Cost Managment and Compliance** as the display name. Select **Save**.
 
-    ![Azure portal screenshot, showing New Management Group, then the group ID and name filled in.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image171.png "Create Management Group blade")
+    ![Azure portal screenshot, showing New Management Group, then the group ID and name filled in.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image171(1).png "Create Management Group blade")
 
-4. Select the **CMC** Management Group and then select the details link next to it.
+4. Select the **Cost Management and Compliance** Management Group and then select the details link next to it.
 
 5. Select the **+ Add Subscription** option and then choose your subscription.
 
@@ -1673,9 +1673,9 @@ In this task you will create a management group and assign a policy that contain
 
 11. In the **Allowed virtual machine SKUs** select the **Assign** option.
 
-12. Next, select the ellipsis to configure the Scope. Select **CMC**, then select the **Select** button.
+12. Next, select the ellipsis to configure the Scope. Select **Cost Management and Compliance**, then select the **Select** button.
 
-    ![Azure portal screenshot, showing New Management Group, then the group ID and name filled in.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image175.png "Create Management Group blade")
+    ![Azure portal screenshot, showing New Management Group, then the group ID and name filled in.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image175(1).png "Create Management Group blade")
 
 13. In the **Basics** form below, enter the following values:
 
@@ -1691,7 +1691,7 @@ In this task you will create a management group and assign a policy that contain
 
     The assignment form should look like this:
 
-    ![Azure portal screenshot, showing the Assign Initiative blade. The Naming Convention policy initiative has been selected, and the assignment is at management group scope.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image179.png "Assign Initiative Azure portal blade")
+    ![Azure portal screenshot, showing the Assign Initiative blade. The Naming Convention policy initiative has been selected, and the assignment is at management group scope.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image179(1).png "Assign Initiative Azure portal blade")
 
 14. Select the **Next** button.
 
@@ -1699,7 +1699,7 @@ In this task you will create a management group and assign a policy that contain
 
     The assignment form should look like this:
 
-    ![Azure portal screenshot, showing the Assign Initiative blade. The Naming Convention policy initiative has been selected, and the assignment is at management group scope.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image180.png "Assign Initiative Azure portal blade")
+    ![Azure portal screenshot, showing the Assign Initiative blade. The Naming Convention policy initiative has been selected, and the assignment is at management group scope.](images/Hands-onlabstep-by-step-Enterprise-readycloudimages/media/image180(1).png "Assign Initiative Azure portal blade")
 
     > **Note**: This was process can take up to 30 minutes to complete.
 
